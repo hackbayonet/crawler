@@ -1,0 +1,145 @@
+a, a:link, a:visited, a:active
+{
+    color: #1E7FB8;
+    text-decoration: none;
+}
+a:hover
+{
+    color: #FF3300;
+    text-decoration: underline;
+}
+html
+{
+    background-attachment: scroll;
+    background-color: #F5F5F5;
+    background-position: center top;
+    background-repeat: repeat-y;
+}
+body
+{
+    background-color: #FFFFFF;
+    color: #333333;
+    font-family: Verdana;
+    font-size: 12px;
+    line-height: 170%;
+    margin: auto;
+    width: 945px;
+}
+li{
+    list-style:none;
+    /*list-style-type:none;  ����Ҳ����*/
+}
+
+.divclear
+{
+    clear: both;
+    height: 1px;
+    margin-top: -1px;
+    overflow: hidden;
+    width: auto;
+}
+
+.header_area
+{
+    background-attachment: scroll;
+    background-image: url("image/bk_ctr1.jpg");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    height: 235px;
+    margin: 0 auto;
+    width: 945px;
+}
+.header_area .logo
+{
+    display: inline-block;
+    float: left;
+    height: 110px;
+    width: 50px;
+}
+.header_area .r
+{
+    color: #FFFFFF;
+    padding: 12px;
+    text-align: left;
+}
+
+.nav
+{
+    background-color: #1E6FB2;
+    border-bottom: 2px solid #DBEEF9;
+    height: 46px;
+    line-height: 16px;
+    overflow: hidden;
+    padding: 0 0px;
+}
+.nav .l
+{
+    float: left;
+}
+.nav .l ul li
+{
+    color: #999999;
+    float: left;
+}
+.nav .l ul li a
+{
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0 10px;
+}
+.nav .l ul li a:hover
+{
+    color: #FFFF00 !important;
+}
+.project_list {
+    background-color: #EDF7FA;
+    color: #444444;
+    font-size: 14px;
+    padding: 19px 0 0 19px;
+    text-align: left;
+}
+.part1
+{
+    background-color: #EAF3F8;
+    border-bottom: 1px solid #CCCCCC;
+    margin: auto;
+    padding: 10px 0;
+    width: 945px;
+}
+.part1 ul
+{
+    margin: auto;
+    width: 945px;
+}
+.part1 ul li
+{
+    float: left;
+    height: 90px;
+    line-height: 18px;
+    padding: 0 5px;
+    text-align: center;
+    width: 170px;   /*调整*/
+}
+.part1 ul li p
+{
+    padding-top: 5px;
+}
+.part1 ul li p img
+{
+    width: 45px;
+}
+.pagination{margin:0px auto;font-size:15px; width:390px;}
+.pagination ul li a {
+	height: 17px;
+	float: left;
+    padding-bottom:100px
+}
+#pagination-digg a:link,#pagination-digg a:visited { color:#0e509e; display:block; float:left; padding:3px 10px; text-decoration:none; }
+#pagination-digg a:hover
+{
+    color: #FF3300;
+    text-decoration: underline;
+}
+#footer {font-size : 2pt; background-color: #f9f9f9; border-top: #e9e9e9 solid 1px; text-align: center; color: #676767; padding: 25px 0}
+#footer a { color: #676767}

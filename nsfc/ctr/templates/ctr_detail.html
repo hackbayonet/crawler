@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+<head>
+     <title>Preintel临床试验注册信息查询系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="{% static 'style_ctr_detail.css' %}" />
+    <link rel="shortcut icon" href="/static/image/favicon.ico"/>
+</head>
+<body>
+<div class="header_area">
+    <div class="r">
+        <p>
+            今天是：{{ now }}</p>
+    </div>
+</div>
+<div class="nav">
+    <div class="l">
+        <ul>
+            <li class="menuitem"><a href='index.aspx'>网站首页</a>|</li>
+            <li class="menuitem"><a href='about.aspx'>小标题1</a>|</li>
+            <li class="menuitem"><a href='searchproj.aspx'>小标题2</a>|</li>
+            <li class="menuitem"><a href='filelist.aspx'>小标题3</a>|</li>
+            <li class="menuitem"><a href='registry.aspx'>小标题4</a>|</li>
+            <li class="menuitem"><a href='question.aspx'>小标题5</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="title" style="font-size:18px;font-weight:bold" align="center" >
+    {{ objects.Ctr_name }}
+</div>
+{{ objects.Ctr_html|safe}}
+<div id="footer" style='margin-top:10px; '>
+		<div class="wrapper">
+			<p class="footer_info">
+				<a href="http://www.lindenpat.com/search/user/legal" target="_blank"><i class="ico_statement"></i>网站首页</a>
+				&nbsp;|&nbsp;
+                <a href="http://www.preintell.com/" target="_blank"><i class="ico_people"></i>关于我们</a>
+				&nbsp;|&nbsp;
+				<a href="http://www.preintell.com/preintell/?page_id=1294" target="_blank"><i class="ico_phone"></i>合作联系</a>
+				&nbsp;|&nbsp;
+				<a href="mailto:jingh@preintell.com"><i class="ico_mail"></i>意见反馈</a>
+				<br><br>
+				<div>
+					<span style="color:#666666; vertical-align: top; line-height:1px">北京预立创投生物医学科技有限公司版权所有&nbsp;</span>
+					<br>
+					<a target='_blank' href='http://www.preintell.com/'><img src="/static/image/header_logo.png" style="width:120px; height:30px;"></a>
+				</div>
+			</p>
+		</div>
+</div>
+</body>
+</html>

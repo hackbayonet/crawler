@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+<head>
+     <title>Preintel临床试验注册信息查询系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="{% static 'style_ctr1.css' %}" />
+    <link rel="shortcut icon" href="/static/image/favicon.ico"/>
+</head>
+<body>
+<div class="header_area">
+    <div class="r">
+        <p>
+            今天是：{{ now }}</p>
+    </div>
+</div>
+<div class="nav">
+    <div class="l">
+        <ul>
+            <li class="menuitem"><a href='index.aspx'>网站首页</a>|</li>
+            <li class="menuitem"><a href='about.aspx'>小标题1</a>|</li>
+            <li class="menuitem"><a href='searchproj.aspx'>小标题2</a>|</li>
+            <li class="menuitem"><a href='filelist.aspx'>小标题3</a>|</li>
+            <li class="menuitem"><a href='registry.aspx'>小标题4</a>|</li>
+            <li class="menuitem"><a href='question.aspx'>小标题5</a></li>
+        </ul>
+    </div>
+</div>
+<div class="part1">
+    <ul>
+        <li>
+            <p>
+                <a href="/ctr/">
+                    <img src="/static/image/ico_1.png" alt="临床试验查询" /></a></p>
+            <p>
+                <a href="/ctr/">临床试验查询</a>
+            </p>
+        </li>
+        <li>
+            <p>
+                <a href="/project/">
+                    <img src="/static/image/ico_2.png" alt="自然科学基金查询" /></a></p>
+            <p>
+                <a href="/project/">自然科学基金查询</a>
+            </p>
+        </li>
+        <li>
+            <p>
+                <a href="secsponsorproj.aspx">
+                    <img src="/static/image/ico_0.jpg" alt="按试验主办单位统计" /></a></p>
+            <p>
+                <a href="secsponsorproj.aspx">小标题3</a>
+            </p>
+        </li>
+        <li>
+            <p>
+                <a href="recruitmentstatusproj.aspx">
+                    <img src="/static/image/ico_0.jpg" alt="按征募研究对象情况统计" /></a></p>
+            <p>
+                <a href="recruitmentstatusproj.aspx">小标题4</a>
+            </p>
+        </li>
+    </ul>
+</div>
+    <div class="divclear">
+    </div>
+
+<div class="part2">
+    <div style="line-height: 36px; font-size: 16px; font-weight: bold; padding-left: 10px;">
+        临床试验注册信息检索
+    </div>
+
+<form action="/ctr/" method="get" style="margin-top:0px;" id="gc">
+  <table width="100%" border="0" cellpadding="0" cellspacing="10" bgcolor="#EAF3F8">
+     <tr>
+      <td width="12%" align="right">注册题目&nbsp;&nbsp;</td>
+      <td width="41%"><input type="text" name="name" width="35%" value=""/></td>
+      <td width="12%" align="right">注册号&nbsp;&nbsp;</td>
+      <td width="35%"><input type="text" name="id" width="35%"  value=""/></td>
+    </tr>
+      <tr>
+      <td align="right">研究负责人&nbsp;&nbsp;</td>
+      <td><input type="text" name="leader" width="35%" value=""/></td>
+      <td align="right">负责人单位&nbsp;&nbsp;</td>
+      <td><input type="text"  name="sponsor" width="35%"  value=""/></td>
+    </tr>
+      <tr>
+      <td align="right">注册号状态&nbsp;&nbsp;</td>
+      <!--<td><input type="text" name="status" width="35%" value=""/></td>-->
+      <td>
+          <select id="regstatus" name="status">
+              <option value="注册">不限</option>
+              <option value="预注册">预注册</option>
+              <option value="补注册">补注册</option>
+          </select>
+      </td>
+      <td align="right">研究类型&nbsp;&nbsp;</td>
+      <td><input type="text" name="type"  width="35%"  value=""/></td>
+    </tr>
+    </table>
+
+    <div class="button " align="center">
+        <p></p>
+        <input type="submit" value="&nbsp;检&nbsp;索" />
+        <input type="reset" value="&nbsp;清&nbsp;空" />
+    </div>
+</form>
+</div>
+<div style="background-color: #ffc; padding: 8px 8px 3px 8px; color: #f00;">
+        <p>
+            共检索到<b>{{ counts }}</b>个符合检索条件的试验</p>
+</div>
+
+
+<script language="javascript"><!--
+function ejiaA1(o,a,b,c,d){
+var t=document.getElementById(o).getElementsByTagName("tr");
+for(var i=0;i<t.length;i++){
+t[i].style.backgroundColor=(t[i].sectionRowIndex%2==0)?a:b;
+t[i].onclick=function(){
+if(this.x!="1"){
+this.x="1";//本来打算直接用背景色判断，FF获取到的背景是RGB值，不好判断
+this.style.backgroundColor=d;
+}else{
+this.x="0";
+this.style.backgroundColor=(this.sectionRowIndex%2==0)?a:b;
+}
+}
+t[i].onmouseover=function(){
+if(this.x!="1")this.style.backgroundColor=c;
+}
+t[i].onmouseout=function(){
+if(this.x!="1")this.style.backgroundColor=(this.sectionRowIndex%2==0)?a:b;
+}
+}
+}
+--></script>
+
+<div class="part3">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" id="ejiaA1">
+
+<tr>
+<th>注册号</th><th>注册题目</th><th>研究负责人</th><th>注册状态</th>
+</tr>
+<tr>
+    {% for object in objects %}
+<td>{{ object.Ctr_id }}</td>
+<td><a href="/ctr/detail/?regid={{object.Ctr_id}}" target="_blank">{{ object.Ctr_name }}</a></td>
+<td>{{ object.Ctr_leader }}</td>
+<td>{{ object.Ctr_status }}</td>
+</tr>
+    {% endfor %}
+</table>
+</div>
+<div class="divclear">
+    </div>
+
+<script language="javascript"><!--
+//ejiaA1("表格名称","奇数行背景","偶数行背景","鼠标经过背景","点击后背景");
+ejiaA1("ejiaA1","#fff","#F5F5F5","#FFFFCC","#EBF3F8");
+--></script>
+<div class="pagination">
+        <ul id="pagination-digg">
+            {% if objects.has_previous %}
+            <li class=previous-off">
+                <a href="?{{ condition }}&page={{ objects.previous_page_number }}">&laquo;前一页</a></li>
+            {% else %}
+            <li class="active"><a>前一页</a></li>
+            {% endif %}
+            {% for p in page_range %}
+            {% ifequal p objects.number %}
+            <li class="active"><a>{{p}}</a></li>
+            {% else %}
+            <li><a href="?{{ condition }}&page={{p}}" title="第{{p}}页">{{p}}</a><li>
+            {% endifequal %}
+            {% endfor %}
+            {% if objects.has_next %}
+            <li><a href="?{{ condition }}&page={{ objects.next_page_number }}">后一页&raquo;</a></li>
+            {% else %}
+            <li class="active"> <a>后一页</a></li>
+            {% endif %}
+        </ul>
+</div>
+<div class="divclear">
+    </div>
+<div id="footer" style='margin-top:10px; '>
+		<div class="wrapper">
+			<p class="footer_info">
+				<a href="http://www.lindenpat.com/search/user/legal" target="_blank"><i class="ico_statement"></i>网站首页</a>
+				&nbsp;|&nbsp;
+                <a href="http://www.preintell.com/" target="_blank"><i class="ico_people"></i>关于我们</a>
+				&nbsp;|&nbsp;
+				<a href="http://www.preintell.com/preintell/?page_id=1294" target="_blank"><i class="ico_phone"></i>合作联系</a>
+				&nbsp;|&nbsp;
+				<a href="mailto:jingh@preintell.com"><i class="ico_mail"></i>意见反馈</a>
+				<br><br>
+				<div>
+					<span style="color:#666666; vertical-align: top; line-height:1px">北京预立创投生物医学科技有限公司版权所有&nbsp;</span>
+					<br>
+					<a target='_blank' href='http://www.preintell.com/'><img src="/static/image/header_logo.png" style="width:120px; height:30px;"></a>
+				</div>
+			</p>
+		</div>
+</div>
+
+
+</body>
+</html>
+
+
