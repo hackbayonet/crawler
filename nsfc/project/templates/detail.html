@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'style_detail.css' %}" />
+<link rel="shortcut icon" href="/static/image/favicon.ico"/>
+<head>
+    <style>
+    h1 {text-align:center;}
+    </style>
+    <title>Preintell科学基金查询系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="header_area">
+    <div class="r">
+        <p>
+            今天是：{{ now }}</p>
+    </div>
+</div>
+<div class="nav">
+    <div class="l">
+        <ul>
+            <li class="menuitem"><a href='index.aspx'>网站首页</a>|</li>
+            <li class="menuitem"><a href='about.aspx'>小标题1</a>|</li>
+            <li class="menuitem"><a href='searchproj.aspx'>小标题2</a>|</li>
+            <li class="menuitem"><a href='filelist.aspx'>小标题3</a>|</li>
+            <li class="menuitem"><a href='registry.aspx'>小标题4</a>|</li>
+            <li class="menuitem"><a href='question.aspx'>小标题5</a></li>
+        </ul>
+    </div>
+</div>
+    <div class="divclear">
+    </div>
+<div class="info">
+    <h1 class="title">{{ object.Detail_name }}</h1>
+    <ul style="margin:4px 0 6px 0;">
+        <li style="color: #AED6FF;;list-style: square inside none;">
+            <span style="color:Black;font-size:17px;font-weight:bold;">基本信息</span>
+        </li></ul>
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" id="InfoTable">
+        <tbody>
+        <tr>
+            <td width="110" class="l">批准号：</td>
+            <td class="r">&nbsp;{{ object.Detail_pid }}</td>
+        </tr>
+        <tr>
+            <td width="110" class="l">项目名称：</td>
+            <td class="r">&nbsp;{{ object.Detail_name|escape }}</td>
+        </tr>
+        <tr>
+            <td width="110" class="l">项目类别：</td>
+            <td class="r">&nbsp;{{ object.Detail_classify }}</td>
+        </tr>
+         <tr>
+            <td width="110" class="l">申请代码：</td>
+            <td class="r">&nbsp;{{ object.Detail_apply }}</td>
+        </tr>
+         <tr>
+            <td width="110" class="l">项目负责人：</td>
+            <td class="r">&nbsp;{{ object.Detail_person }}</td>
+        </tr>
+         <tr>
+            <td width="110" class="l">负责人职称：</td>
+            <td class="r">&nbsp;{{ object.Detail_job }}</td>
+        </tr>
+         <tr>
+            <td width="110" class="l">依托单位：</td>
+            <td class="r">&nbsp;{{ object.Detail_department }}</td>
+        </tr>
+         <tr>
+            <td width="110" class="l">研究期限：</td>
+            <td class="r">&nbsp;{{ object.Detail_time }}</td>
+        </tr>
+         <tr>
+            <td width="110" class="l">资助经费：</td>
+            <td class="r">&nbsp;{{ object.Detail_money }}</td>
+        </tr>
+        </tbody> </table> </div>
+<div class="info">
+    <ul style="margin:4px 0 6px 0;"><li style="color: #AED6FF;;list-style: square inside none;">
+        <span style="color:Black;font-size:17px;font-weight:bold;">项目摘要</span></li></ul>
+    <table width="100%" cellspacing="0" cellpadding="0" border="1" id="InfoTable"  style="word-break:break-all">
+        <tbody>
+        <tr>
+            <td width="110" class="l">中文摘要</td>
+            <td class="r">&nbsp;{{ object.Detail_abstract_chinese }}</td>
+        </tr>
+        <tr>
+            <td width="110" class="l">中文主题词</td>
+            <td class="r">&nbsp;{{ object.Detail_keyword_chinese }}</td>
+        </tr>
+         <tr>
+            <td width="110" class="l">英文摘要</td>
+            <td class="r">&nbsp;{{ object.Detail_abstract_english }}</td>
+        </tr>
+        <tr>
+            <td width="110" class="l">英文主题词</td>
+            <td class="r">&nbsp;{{ object.Detail_keyword_english }}</td>
+        </tr>
+        <tr>
+            <td width="110" class="l">结题摘要</td>
+            <td class="r">&nbsp;{{ object.Detail_abstract_end }}</td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+<div class="info">
+    <ul style="margin:4px 0 6px 0;"><li style="color: #AED6FF;;list-style: square inside none;">
+        <span style="color:Black;font-size:17px;font-weight:bold;">成果</span></li></ul>
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" id="InfoTable"  style="word-break:break-all">
+        <tbody>
+        <tr>
+            <td width="110" class="l">成果</td>
+            <td class="r">&nbsp;{{ object.Detail_achievement|safe }}</td>
+        </tr>
+        </tbody></table></div></body>
+<!--<div id="foot" align="center">-->
+		<!--<ul>-->
+			<!--<span>-->
+			    <!--<a href="/project_index/">网站首页</a> --->
+			    <!--<a href="#" title="SooPAT 专利搜索" onclick="window.external.addfavorite('http://www.soopat.com','SooPAT 专利搜索')"> 加入收藏夹</a> --->
+			    <!--<a href="http://portal.soopat.com/guide/About">关于</a> --->
+                <!--<a href="http://portal.soopat.com/guide/Contact">联系我们</a>-->
+			<!--</span>-->
+			<!--<li>&copy;2003-2015 SooPAT</li>-->
+		<!--</ul>-->
+	<!--</div>-->
+<div id="footer" style='margin-top:10px; '>
+		<div class="wrapper">
+			<p class="footer_info">
+				<a href="http://www.lindenpat.com/search/user/legal" target="_blank"><i class="ico_statement"></i>网站首页</a>
+				&nbsp;|&nbsp;
+                <a href="http://www.preintell.com/"><i class="ico_people"></i>关于我们</a>
+				&nbsp;|&nbsp;
+				<a href="http://www.preintell.com/preintell/?page_id=1294"><i class="ico_phone"></i>合作联系</a>
+				&nbsp;|&nbsp;
+				<a href="mailto:jingh@preintell.com"><i class="ico_mail"></i>意见反馈</a>
+				<br><br>
+				<div>
+					<span style="color:#666666; vertical-align: top; line-height:1px">北京预立创投生物医学科技有限公司版权所有&nbsp;</span>
+					<br>
+					<a target='_blank' href='http://www.preintell.com/'><img src="/static/image/header_logo.png" style="width:120px; height:30px;"></a>
+				</div>
+			</p>
+		</div>
+</div>
+
+
+</html>
