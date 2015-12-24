@@ -9,13 +9,13 @@ class LaogouSpider(Spider):
     name = "lagou"
     allowed_domains = ["http://www.lagou.com"]
     form = {
-        'city': u'成都',
+        # 'city': u'成都',
         'pn': '1',
         'kd': 'python',
     }
 
     def start_requests(self):
-        for page in xrange(1, 4):
+        for page in xrange(1, 87):
             self.form['pn'] = repr(page)
             yield FormRequest("http://www.lagou.com/jobs/positionAjax.json",
                               formdata=self.form,
@@ -40,7 +40,4 @@ class LaogouSpider(Spider):
             item['positionType'] = each['positionType']
             item['salary'] = each['salary']
             item['workYear'] = each['workYear']
-            # for key in item:
-            #     print item[key],
-            # print
             yield item
