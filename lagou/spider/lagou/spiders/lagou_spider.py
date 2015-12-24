@@ -20,6 +20,7 @@ class LaogouSpider(Spider):
             yield FormRequest("http://www.lagou.com/jobs/positionAjax.json",
                               formdata=self.form,
                               callback=self.parse,)
+            break
 
     def parse(self, response):
         body = json.loads(response.body)
@@ -40,4 +41,5 @@ class LaogouSpider(Spider):
             item['positionType'] = each['positionType']
             item['salary'] = each['salary']
             item['workYear'] = each['workYear']
+            item['classify'] = 'python'
             yield item

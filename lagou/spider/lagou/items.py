@@ -22,4 +22,5 @@ class LagouItem(Item):
     positionType = Field()
     salary = Field()
     workYear = Field()
+    classify = Field()
     pass
