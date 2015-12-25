@@ -20,7 +20,7 @@ class LaogouSpider(Spider):
             yield FormRequest("http://www.lagou.com/jobs/positionAjax.json",
                               formdata=self.form,
                               callback=self.parse,)
-            break
+            # break
 
     def parse(self, response):
         body = json.loads(response.body)

@@ -19,5 +19,6 @@ from lagou import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^home/', views.home)
+    url(r'^home/$', views.home),
+    url(r'^home/detail/(.*?)/$', views.detail)
 ]
