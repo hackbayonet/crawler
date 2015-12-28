@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <head>
     <meta charset="utf-8">
-    <title>ECharts</title>
+    <title>{{ key }}</title>
 </head>
 <body>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="main" style="height:400px"></div>
     <!-- ECharts单文件引入 -->
-    <script src="/static/js/echarts/echarts.js"></script>
+    <script language="javascript" src="/static/js/echarts/echarts.js" charset="utf-8"></script>
     <script type="text/javascript">
         // 路径配置
         require.config({
@@ -23,6 +23,7 @@
             ],
             function (ec) {
                 // 基于准备好的dom，初始化echarts图表
+                var Dict = {{ demand|safe }};
                 var myChart = ec.init(document.getElementById('main'));
                 // 过渡---------------------
                 myChart.showLoading({
@@ -49,7 +50,7 @@
                     xAxis : [
                         {
                             type : 'category',
-                            data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+                            data : Dict.city
                         }
                     ],
                     yAxis : [
@@ -60,7 +61,7 @@
                         {
                             name:'招聘职位',
                             type:'bar',
-                            data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+                            data:Dict.demandJob,
                             markPoint : {     //标记
                                 data : [
                                     {type : 'max', name: '最多招聘职位'},
@@ -71,7 +72,7 @@
                         {
                             name:'招聘公司',
                             type:'bar',
-                            data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
+                            data: Dict.demandCompany,
                             markPoint : {
                                 data : [
                                     {type : 'max', name: '最多招聘公司'},]},
@@ -81,9 +82,10 @@
                                 ]}}
                     ]
                 };
-                // 为echarts对象加载数据 
-                myChart.setOption(option); 
+                // 为echarts对象加载数据
+                myChart.setOption(option);
             }
         );
     </script>
+<a href="/home/demand_all/{{ key }}"> 查看全国</a>
 </body>

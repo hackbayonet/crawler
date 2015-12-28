@@ -111,3 +111,5 @@ MONGODB_DATABASES = {
         "tz_aware": True, # if you using timezones in django (USE_TZ = True)
     },
 }
+FILE_CHARSET = 'utf-8'
+DEFAULT_CHARSET = 'utf-8'
