@@ -23,7 +23,7 @@ def demand_all(request, key):
     object = Demand.objects[0]
     demand = {}
     demand['city'] = [e.encode('utf8') for e in object.city]
-    # demandCompany = object.demandCompany
+    demandCompany = object.demandCompany
     demandJob = object.demandjob
     demand['max'] = max(demandJob)
     data = []
@@ -31,5 +31,6 @@ def demand_all(request, key):
         data.append({'name': value, 'value': demandJob[index]})
     demand['data'] = data
     demand['top10'] = data[0:10]
+    demand['demandJob'] = demandJob
     return render(request, 'demo.html', {'key': key,
                                          'demand': json.dumps(demand, encoding="UTF-8", ensure_ascii=False)})

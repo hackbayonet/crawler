@@ -15,11 +15,12 @@
         require(
             [
                 'echarts',
+                'echarts/chart/pie',
                 'echarts/chart/map'
             ],
             function (ec) {
                 var Dict = {{ demand|safe }}
-                var myChart = ec.init(document.getElementById('main'));
+                var myChart = ec.init(document.getElementById('main'),'macarons');
                 var option = {
                     title : {
                         text: '全国各城市招聘需求-{{ key }}',
@@ -32,7 +33,7 @@
                     legend: {
                         orient: 'vertical',
                         x:'left',
-                        data:['职位需求']
+                        data:['招聘职位']
                     },
                     dataRange: {
                         min : 0,
@@ -52,9 +53,16 @@
                             saveAsImage : {show: true}
                         }
                     },
+                    roamController: {
+                        show: true,
+                        x: 'right',
+                        mapTypeControl: {
+                            'china': true
+                        }
+                    },
                     series : [
                         {
-                            name: '职位需求',
+                            name: '招聘职位',
                             type: 'map',
                             mapType: 'china',
                             hoverable: false,
@@ -273,9 +281,9 @@
                 "武汉":[114.31,30.52],
                 "大庆":[125.03,46.58]
             }
-        },
+                        },
         {
-            name: 'Top10',
+            name: '招聘职位',
             type: 'map',
             mapType: 'china',
             data:[],
@@ -295,11 +303,23 @@
                 },
                 data : Dict['top10']
             }
-        }
-    ]
-};
+        },
+                        {
+                            name: '招聘职位',
+                            type: 'pie',
+                            roseType: 'area',
+                            tooltip: {
+                                trigger: 'item',
+                                formatter: "{a} <br/>{b} : {c} ({d}%)"
+                            },
+                            center: [document.getElementById('main').offsetWidth - 250, 250],
+                            radius: [50, 100],
+                            data: Dict.data
+                        },
+                    ],
+                    animation: true
+                };
                 myChart.setOption(option)
-
-                })
+        })
     </script>
 </body>
