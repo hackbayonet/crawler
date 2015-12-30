@@ -21,6 +21,10 @@
             function (ec) {
                 var Dict = {{ demand|safe }}
                 var myChart = ec.init(document.getElementById('main'),'macarons');
+                myChart.showLoading({
+                    text: '正在努力的读取数据中...',
+                    effect: 'bubble'
+                    });
                 var option = {
                     title : {
                         text: '全国各城市招聘需求-{{ key }}',
@@ -319,7 +323,8 @@
                     ],
                     animation: true
                 };
-                myChart.setOption(option)
+        myChart.hideLoading();
+        myChart.setOption(option)
         })
     </script>
 </body>

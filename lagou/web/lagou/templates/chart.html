@@ -27,13 +27,13 @@
                 var myChart = ec.init(document.getElementById('main'),'macarons');
                 // 过渡---------------------
                 myChart.showLoading({
-                    text: '正在努力的读取数据中...'    //loading话术
+                    text: '正在努力的读取数据中...',
+                    effect: 'bubble'
                     });
-                myChart.hideLoading();
                 var option = {
                     backgroundColor:'null',  // 全图默认背景
                     title : {
-                        text: '各城市招聘数量 Top10',  //标题
+                        text: '各城市招聘数量 Top10 -{{ key }}',  //标题
                         subtext: '数据来源于拉勾网',    // 副标题
                         x: 'center'},
                     tooltip : {             // 气泡提示配置
@@ -87,10 +87,10 @@
                     ]
                 };
                 // 为echarts对象加载数据
+                myChart.hideLoading();
                 myChart.setOption(option);
             }
         );
-
     </script>
 <a href="/home/demand_all/{{ key }}"> 查看全国</a>
 </body>
