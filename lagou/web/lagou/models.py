@@ -40,9 +40,12 @@ class Demand(Document):
     city = ListField()
     demandCompany = ListField()
     demandjob = ListField()
+    key = StringField(max_length=25, required=True)
 
     def __unicode__(self):
-        return (self.demandjob,
+        return (self.key,
+                self.city,
+                self.demandjob,
                 self.demandCompany)
 
 

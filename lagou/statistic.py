@@ -24,15 +24,11 @@ def demand(key):
         city.append(each[0])
         demandCompany.append(each[1])
         demandjob.append(demandjobCount[each[0]])
-    db.demand.insert({'demandCompany': demandCompany, 'demandjob': demandjob, 'city': city})
-
-
-
-
+    db.demand.insert({'key': key, 'demandCompany': demandCompany, 'demandjob': demandjob, 'city': city})
 
 
 def main():
     demand('python')
-
+    demand('php')
 if __name__ == '__main__':
     main()
