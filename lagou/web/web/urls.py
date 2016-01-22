@@ -4,8 +4,9 @@ from lagou import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    # url(r'^home/$', views.home),
-    url(r'^detail/(.*?)$', views.detail),
+    # url(r'^detail/(.*?)$', views.detail),
+    url(r'^key', views.index),
     url(r'^demand_all/(.*?)$', views.demand_all),
+    url(r'^index', views.index),
     url(r'.*', views.home)
 ]

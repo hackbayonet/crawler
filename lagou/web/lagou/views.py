@@ -36,7 +36,13 @@ def demand_all(request, keys):
                                          'demand': json.dumps(demand, encoding="UTF-8", ensure_ascii=False)})
 
 
-def detail(request, keys):
-    if keys != 'python':
-        return render(request, '404.html')
-    # return render(request, 'index.html')
+def detail(request, key):
+    # if keys != 'python':
+        # return render(request, '404.html')
+    keys = key
+
+    return render(request, 'index.html')
+
+def index(request):
+    key = request.GET['k']
+    return render(request,'index.html')
