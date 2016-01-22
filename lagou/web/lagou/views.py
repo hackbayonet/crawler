@@ -9,14 +9,14 @@ def home(request):
     return render(request, 'home.html')
 
 
-def detail(request, keys):
-    object = Demand.objects(key=keys)[0]
-    demand = {}
-    demand['city'] = [e.encode('utf8') for e in object.city[0:10]]
-    demand['demandCompany'] = object.demandCompany[0:10]
-    demand['demandJob'] = object.demandjob[0:10]
-    return render(request, 'chart.html', {'key': keys,
-                                          'demand': json.dumps(demand, encoding="UTF-8", ensure_ascii=False)})
+# def detail(request, keys):
+#     object = Demand.objects(key=keys)[0]
+#     demand = {}
+#     demand['city'] = [e.encode('utf8') for e in object.city[0:10]]
+#     demand['demandCompany'] = object.demandCompany[0:10]
+#     demand['demandJob'] = object.demandjob[0:10]
+#     return render(request, 'chart.html', {'key': keys,
+#                                           'demand': json.dumps(demand, encoding="UTF-8", ensure_ascii=False)})
 
 
 def demand_all(request, keys):
@@ -34,3 +34,9 @@ def demand_all(request, keys):
     demand['demandJob'] = demandJob
     return render(request, 'demo.html', {'key': keys,
                                          'demand': json.dumps(demand, encoding="UTF-8", ensure_ascii=False)})
+
+
+def detail(request, keys):
+    if keys != 'python':
+        return render(request, '404.html')
+    # return render(request, 'index.html')
