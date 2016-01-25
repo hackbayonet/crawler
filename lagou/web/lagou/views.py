@@ -9,14 +9,14 @@ def home(request):
     return render(request, 'home.html')
 
 
-# def detail(request, keys):
-#     object = Demand.objects(key=keys)[0]
-#     demand = {}
-#     demand['city'] = [e.encode('utf8') for e in object.city[0:10]]
-#     demand['demandCompany'] = object.demandCompany[0:10]
-#     demand['demandJob'] = object.demandjob[0:10]
-#     return render(request, 'chart.html', {'key': keys,
-#                                           'demand': json.dumps(demand, encoding="UTF-8", ensure_ascii=False)})
+def detail(request, keys):
+    object = Demand.objects(key=keys)[0]
+    demand = {}
+    demand['city'] = [e.encode('utf8') for e in object.city[0:10]]
+    demand['demandCompany'] = object.demandCompany[0:10]
+    demand['demandJob'] = object.demandjob[0:10]
+    return render(request, 'chart.html', {'key': keys,
+                                          'demand': json.dumps(demand, encoding="UTF-8", ensure_ascii=False)})
 
 
 def demand_all(request, keys):
@@ -36,13 +36,11 @@ def demand_all(request, keys):
                                          'demand': json.dumps(demand, encoding="UTF-8", ensure_ascii=False)})
 
 
-def detail(request, key):
-    # if keys != 'python':
-        # return render(request, '404.html')
-    keys = key
-
-    return render(request, 'index.html')
-
-def index(request):
+def job(request, key):
     key = request.GET['k']
-    return render(request,'index.html')
+    if key != 'python':
+        return render(request, '404.html')
+    else:
+        return render(request, 'index.html',
+                      {'key': key,
+                       })

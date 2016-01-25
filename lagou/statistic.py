@@ -9,7 +9,7 @@ def demand(key):
     demandjobCount = {}
     for eachData in db.info.find({"classify": key}):
         city = eachData['city']
-        demandjobCount[city] = demandjobCount.get(city, 0) + 1  # 统计每个城市招聘的职位
+        demandjobCount[city] = demandjobCount.get(city, 0) + 1    # 统计每个城市招聘的职位
         demandCompanyCount[city] = demandCompanyCount.get(city, set())
         demandCompanyCount[city].add(eachData['companyName'])
     for each in demandCompanyCount:
