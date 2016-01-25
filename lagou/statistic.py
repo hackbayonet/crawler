@@ -15,16 +15,7 @@ def demand(key):
     for each in demandCompanyCount:
         demandCompanyCount[each] = len(demandCompanyCount[each])  # 统计每个城市招聘的公司
 
-    sort_list = sorted(demandCompanyCount.iteritems(), key=lambda asd: asd[1], reverse=True)  # 对招聘公司计数的字典排序
-    demandCompany = []
-    demandjob = []
-    city = []
-
-    for each in sort_list:
-        city.append(each[0])
-        demandCompany.append(each[1])
-        demandjob.append(demandjobCount[each[0]])
-    db.demand.insert({'key': key, 'demandCompany': demandCompany, 'demandjob': demandjob, 'city': city})
+    db.demand.insert({'key': key, 'demandCompany': demandCompanyCount, 'demandjob': demandjobCount})
 
 
 def main():
