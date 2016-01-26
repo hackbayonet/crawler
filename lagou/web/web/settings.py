@@ -108,7 +108,7 @@ MONGODB_DATABASES = {
         "host": 'localhost',
         "password": '',
         "username": '',
-        "tz_aware": True, # if you using timezones in django (USE_TZ = True)
+        "tz_aware": True,  # if you using timezones in django (USE_TZ = True)
     },
 }
 FILE_CHARSET = 'utf-8'

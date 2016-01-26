@@ -14,8 +14,7 @@ def demand(key):
         demandCompanyCount[city].add(eachData['companyName'])
     for each in demandCompanyCount:
         demandCompanyCount[each] = len(demandCompanyCount[each])  # 统计每个城市招聘的公司
-
-    db.demand.insert({'key': key, 'demandCompany': demandCompanyCount, 'demandjob': demandjobCount})
+    db.demand.insert({'key': key, 'demandCompany': demandCompanyCount, 'demandJob': demandjobCount})
 
 
 def main():

@@ -37,10 +37,17 @@ def demand_all(request, keys):
 
 
 def job(request, key):
-    key = request.GET['k']
-    if key != 'python':
+    if key not in ('python', 'php'):
         return render(request, '404.html')
     else:
-        return render(request, 'index.html',
-                      {'key': key,
+        objects = Demand.objects(key=key)[0]
+        demandJob = objects.demandJob
+        demandCompany = objects.demandCompany
+        sortDemandJob = sorted(demandJob.items(), lambda x, y: cmp(x[1], y[1]), reverse=True)  # 按招聘职位数量降序
+        city = [each[0] for each in sortDemandJob][0:10]
+        jobTop10 = [each[1] for each in sortDemandJob][0:10]
+        companyTop10 = [demandCompany[each] for each in city]
+        data = {'key': key, 'city': city, 'jobTop10': jobTop10, 'companyTop10': companyTop10}
+        return render(request, 'chart01.html',
+                      {'data': json.dumps(data, encoding="UTF-8", ensure_ascii=False),
                        })
