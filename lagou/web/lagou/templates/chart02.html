@@ -341,5 +341,10 @@
         myChart.setOption(option)
         })
     </script>
-
+<form action="/job/{{ key }}" method="post">
+{% csrf_token %}
+<input type="image" src="/static/image/prev.png" alt="Submit" name="status" value="one" align="left">
+<input type="image" src="/static/image/home.png" alt="Submit" name="status" value="home" align="middle">
+<input type="image" src="/static/image/next.png" alt="Submit" name="status" value="three" align="right">
+</form>
 </body>

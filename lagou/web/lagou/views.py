@@ -10,22 +10,6 @@ def home(request):
     return render(request, 'home.html')
 
 
-def demand_all(request, keys):
-    objects = Demand.objects(key=keys)[0]
-    demandJob = objects.demandJob
-    sortDemandJob = sorted(demandJob.items(), lambda x, y: cmp(x[1], y[1]), reverse=True)
-    city = [each[0] for each in sortDemandJob]
-    jobNumber = [each[1] for each in sortDemandJob]
-    mapData = []
-    for each in city:
-        mapData.append({'name': each, 'value': demandJob[each]})
-    dataTop10 = mapData[0:10]
-    maxData = jobNumber[0]
-    data = {'mapData': mapData, 'city': city, 'jobNumber': jobNumber, 'dataTop10': dataTop10, 'maxData': maxData}
-    return render(request, 'demo.html', {'key': keys,
-                                         'data': json.dumps(data, encoding="UTF-8", ensure_ascii=False)})
-
-
 def one(request, key):
     objects = Demand.objects(key=key)[0]
     demandJob = objects.demandJob
@@ -69,9 +53,14 @@ def job(request, key):
                 status = request.POST['status']
                 if status == 'home':  # 访问首页
                     return HttpResponseRedirect('/')
+                elif status == 'one':
+                    result = one(request, key)
+                    return result
                 elif status == 'two':
                     result = two(request, key)
                     return result
+                else:
+                    return render(request, '404.html')  # status 不存在, 返回404
             else:
                 return render(request, '404.html')   # 参数中没有status, 返回404
         else:
