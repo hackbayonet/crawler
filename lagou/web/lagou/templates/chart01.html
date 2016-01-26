@@ -90,5 +90,9 @@
                 }
         );
     </script>
-<a href="/demand_all/{{ key }}"> 查看全国</a>
+<form action="/job/{{ key }}" method="post">
+{% csrf_token %}
+<input type="image" src="/static/image/home.png" alt="Submit" name="status" value="home" align="left">
+<input type="image" src="/static/image/next.png" alt="Submit" name="status" value="two" align="right">
+</form>
 </body>

@@ -4,7 +4,6 @@ from lagou import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^detail/(.*?)$', views.detail),
     url(r'^job/(.*?)$', views.job),
     url(r'^demand_all/(.*?)$', views.demand_all),
     url(r'.*', views.home)
