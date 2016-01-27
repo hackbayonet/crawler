@@ -41,6 +41,10 @@ def two(request, keys):
                                          'data': json.dumps(data, encoding="UTF-8", ensure_ascii=False)})
 
 
+def three(request, key):
+    return render(request, 'chart03.html')
+
+
 def job(request, key):
     if key not in ('python', 'php'):
         return render(request, '404.html')  # job 不存在 返回404
@@ -58,6 +62,9 @@ def job(request, key):
                     return result
                 elif status == 'two':
                     result = two(request, key)
+                    return result
+                elif status == 'three':
+                    result = three(request, key)
                     return result
                 else:
                     return render(request, '404.html')  # status 不存在, 返回404

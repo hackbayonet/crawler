@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8">
     <title>{{ key }}</title>
@@ -92,7 +93,8 @@
     </script>
 <form action="/job/{{ key }}" method="post">
 {% csrf_token %}
-<input type="image" src="/static/image/home.png" alt="Submit" name="status" value="home" align="left">
+<input type="image" src="/static/image/home.png" alt="Submit" name="status" value="home"align="left">
 <input type="image" src="/static/image/next.png" alt="Submit" name="status" value="two" align="right">
 </form>
 </body>
+</html>
