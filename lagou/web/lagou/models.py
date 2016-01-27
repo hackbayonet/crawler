@@ -37,11 +37,26 @@ class Info(Document):
 
 
 class Demand(Document):
-    demandCompany = ListField()
-    demandJob = ListField()
+    demandCompany = DictField()
+    demandJob = DictField()
+    workYear = DictField()
+    position = DictField()
+    industry = DictField()
+    education = DictField()
+    companyStage = DictField()
+
     key = StringField(max_length=25, required=True)
 
     def __unicode__(self):
-        return self.key, self.demandJob, self.demandCompany
+        return (
+            self.key,
+            self.demandJob,
+            self.demandCompany,
+            self.workYear,
+            self.position,
+            self.industry,
+            self.education,
+            self.companyStage,
+            )
 
 

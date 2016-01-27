@@ -12,13 +12,13 @@ def home(request):
 
 def one(request, key):
     objects = Demand.objects(key=key)[0]
-    demandJob = objects.demandJob
-    demandCompany = objects.demandCompany
-    sortDemandJob = sorted(demandJob.items(), lambda x, y: cmp(x[1], y[1]), reverse=True)  # 按招聘职位数量降序
-    city = [each[0] for each in sortDemandJob][0:10]
-    jobTop10 = [each[1] for each in sortDemandJob][0:10]
-    companyTop10 = [demandCompany[each] for each in city]
-    data = {'city': city, 'jobTop10': jobTop10, 'companyTop10': companyTop10}
+    demand_job = objects.demandJob
+    demand_company = objects.demandCompany
+    sort_demand_job = sorted(demand_job.items(), lambda x, y: cmp(x[1], y[1]), reverse=True)  # 按招聘职位数量降序
+    city = [each[0] for each in sort_demand_job][0:10]
+    job_top10 = [each[1] for each in sort_demand_job][0:10]
+    company_top10 = [demand_company[each] for each in city]
+    data = {'city': city, 'jobTop10': job_top10, 'companyTop10': company_top10}
     return render(request, 'chart01.html',
                   {'key': key,
                    'data': json.dumps(data, encoding="UTF-8", ensure_ascii=False),
@@ -27,22 +27,45 @@ def one(request, key):
 
 def two(request, keys):
     objects = Demand.objects(key=keys)[0]
-    demandJob = objects.demandJob
-    sortDemandJob = sorted(demandJob.items(), lambda x, y: cmp(x[1], y[1]), reverse=True)
-    city = [each[0] for each in sortDemandJob]
-    jobNumber = [each[1] for each in sortDemandJob]
-    mapData = []
+    demand_job = objects.demandJob
+    sort_demand_job = sorted(demand_job.items(), lambda x, y: cmp(x[1], y[1]), reverse=True)
+    city = [each[0] for each in sort_demand_job]
+    job_number = [each[1] for each in sort_demand_job]
+    map_data = []
     for each in city:
-        mapData.append({'name': each, 'value': demandJob[each]})
-    dataTop10 = mapData[0:10]
-    maxData = jobNumber[0]
-    data = {'mapData': mapData, 'city': city, 'jobNumber': jobNumber, 'dataTop10': dataTop10, 'maxData': maxData}
+        map_data.append({'name': each, 'value': demand_job[each]})
+    data_top10 = map_data[0:10]
+    max_data = job_number[0]
+    data = {'mapData': map_data, 'city': city, 'jobNumber': job_number, 'dataTop10': data_top10, 'maxData': max_data}
     return render(request, 'chart02.html', {'key': keys,
-                                         'data': json.dumps(data, encoding="UTF-8", ensure_ascii=False)})
+                                            'data': json.dumps(data, encoding="UTF-8", ensure_ascii=False)})
 
 
 def three(request, key):
-    return render(request, 'chart03.html')
+    objects = Demand.objects(key=key)[0]
+    work_year = objects.workYear
+    work_year_list = []
+    for each in work_year:
+        work_year_list.append({'name': each, 'value': work_year[each]})
+    position = objects.position
+    position_list = []
+    for each in position:
+        position_list.append({'name': each, 'value': position[each]})
+    education = objects.education
+    education_list = []
+    for each in education:
+        education_list.append({'name': each, 'value': education[each]})
+    company_stage = objects.companyStage
+    company_stage_list = []
+    for each in company_stage:
+        company_stage_list.append({'name': each, 'value': company_stage[each]})
+    render_data = {'work_year': work_year_list,
+                   'position': position_list,
+                   'education': education_list,
+                   'company_stage': company_stage_list}
+
+    return render(request, 'chart03.html', {'key': key,
+                                            'data': json.dumps(render_data, encoding="UTF-8", ensure_ascii=False)})
 
 
 def job(request, key):

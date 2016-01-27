@@ -21,7 +21,7 @@
                 'echarts/chart/pie'
                 ],
             function (ec) {
-{#            var Dict = {{ data|safe }};#}
+            var Dict = {{ data|safe }};
             var myChart = ec.init(document.getElementById('main'),'macarons');
             myChart.showLoading({
                 text: '正在努力的读取数据中...',
@@ -32,8 +32,8 @@
                     });
                    var option = {
     title : {
-        text: '南丁格尔玫瑰图',
-        subtext: '纯属虚构',
+        text: '{{ key }}招聘需求概况(工作年龄、公司阶段、行业、学历)',
+        subtext: '数据来源于拉勾网',
         x:'center'
     },
     tooltip : {
@@ -46,8 +46,8 @@
             mark : {show: true},
             dataView : {show: true, readOnly: false},
             magicType : {
-                show: true,
-                type: ['pie', 'funnel']
+                show: false,
+{#                type: ['pie', 'funnel']#}
             },
             restore : {show: true},
             saveAsImage : {show: true}
@@ -56,90 +56,48 @@
     calculable : true,
     series : [
         {
-            name:'半径模式',
+            name:'工作年龄',
             type:'pie',
             radius : [30, 110],
             center : ['30%', '25%'],
             roseType : 'radius',
-            x:'10%',
-            y: '5%',
-            width: '30%',
-            height: '30%',
-            sort : 'ascending',     // for funnel
-            data:[
-                {value:10, name:'rose1'},
-                {value:5, name:'rose2'},
-                {value:15, name:'rose3'},
-                {value:25, name:'rose4'},
-                {value:20, name:'rose5'},
-                {value:35, name:'rose6'},
-                {value:30, name:'rose7'},
-                {value:40, name:'rose8'}
-            ]
+            data:Dict['work_year']
         },
         {
-            name:'搜索引擎细分',
+            name:'职位类型',
             type:'pie',
             center: ['30%','75%'],
             radius : [30, 110],
             roseType : 'radius',
-            x: '10%',
-            y: '55%',
-            width: '30%',
-            height: '30%',
-            data:[
-                {value:1048, name:'百度'},
-                {value:251, name:'谷歌'},
-                {value:147, name:'必应'},
-                {value:102, name:'其他'}
-            ]
+            data:Dict['position']
         },
         {
-            name:'面积模式',
+            name:'学历',
             type:'pie',
             radius : [30, 110],
             center : ['70%', '25%'],
             roseType : 'radius',
-            x: '50%',
-            y: '5%',
-            width: '30%',
-            height: '30%',
             sort : 'ascending',     // for funnel
-            data:[
-                {value:10, name:'rose1'},
-                {value:5, name:'rose2'},
-                {value:15, name:'rose3'},
-                {value:25, name:'rose4'},
-                {value:20, name:'rose5'},
-                {value:35, name:'rose6'},
-                {value:30, name:'rose7'},
-                {value:40, name:'rose8'}
-            ]},
+            data:Dict['education']
+            },
             {
-            name:'半径模式',
+            name:'公司阶段',
             type:'pie',
             radius : [30, 110],
             center : ['70%', '75%'],
-            x: '50%',
-            y: '55%',
-            width: '30%',
-            height: '30%',
             roseType : 'radius',
-            data:[
-                {value:10, name:'rose1'},
-                {value:5, name:'rose2'},
-                {value:15, name:'rose3'},
-                {value:25, name:'rose4'},
-                {value:20, name:'rose5'},
-                {value:35, name:'rose6'},
-                {value:30, name:'rose7'},
-                {value:40, name:'rose8'}
-            ]},
+            data:Dict['company_stage']
+            },
             ]};
             myChart.hideLoading();
             myChart.setOption(option);
             });
             </script>
-
+<form action="/job/{{ key }}" method="post">
+{% csrf_token %}
+<input type="image" src="/static/image/prev.png" alt="Submit" name="status" value="two" align="left">
+<input type="image" src="/static/image/home.png" alt="Submit" name="status" value="home" align="middle">
+<input type="image" src="/static/image/next.png" alt="Submit" name="status" value="four" align="right">
+</form>
 </body>
 </html>
